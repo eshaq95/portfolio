@@ -1,0 +1,665 @@
+/* Eshaq Rahmani, portfolio
+   Light theme: snow and midnight-sun red. Dark theme: polar night and aurora green. */
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("assets/fonts/schibsted-grotesk-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("assets/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  color-scheme: light dark;
+
+  --snow: #f5f7f7;      /* page */
+  --ink: #14232e;       /* text, a deep fjord slate */
+  --granite: #586973;   /* secondary text */
+  --frost: #d7dfe2;     /* hairlines */
+  --signal: #ba0c2f;    /* the one accent: Norwegian flag red */
+  --on-signal: #ffffff;
+
+  --font: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --measure: 62ch;
+  --gutter: clamp(1rem, 5vw, 3rem);
+  --section-space: clamp(4.5rem, 10vw, 8rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --snow: #0d1821;
+    --ink: #e5ecef;
+    --granite: #93a4ad;
+    --frost: #22323d;
+    --signal: #7ee0b4;
+    --on-signal: #0d1821;
+  }
+}
+
+:root[data-theme="dark"] {
+  --snow: #0d1821;
+  --ink: #e5ecef;
+  --granite: #93a4ad;
+  --frost: #22323d;
+  --signal: #7ee0b4;
+  --on-signal: #0d1821;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 1.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--snow);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+a:hover {
+  color: var(--signal);
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--on-signal);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 74rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--ink);
+  color: var(--snow);
+  text-decoration: none;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+}
+
+.mark {
+  display: inline-flex;
+  color: var(--signal);
+}
+
+.mark svg {
+  display: block;
+}
+
+.mark-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.mark-dot {
+  fill: currentColor;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem 1.75rem;
+}
+
+.nav-list a {
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.nav-list a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 30rem) {
+  .nav-list {
+    gap: 0.25rem 1rem;
+  }
+
+  .nav-list a {
+    font-size: 0.9375rem;
+  }
+}
+
+/* ---------- Introduction ---------- */
+
+.hero {
+  padding-top: clamp(2.5rem, 9vw, 7.5rem);
+}
+
+.hero h1 {
+  font-size: clamp(3.1rem, 11.5vw, 8.75rem);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin-left: -0.04em; /* optical alignment of the E with the text below */
+}
+
+.hero-body {
+  display: grid;
+  gap: 3rem;
+  margin-top: clamp(2rem, 5vw, 3.75rem);
+}
+
+.hero-text > * + * {
+  margin-top: 1.25rem;
+}
+
+.lead {
+  font-size: clamp(1.375rem, 2.3vw, 1.875rem);
+  font-weight: 450;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  max-width: 27ch;
+}
+
+.hero-text p:not(.lead) {
+  max-width: 46ch;
+}
+
+.status {
+  color: var(--granite);
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  padding-top: 0.75rem;
+}
+
+.hero-links a {
+  font-weight: 500;
+}
+
+/* The drawing: a planned path and a drifting odometry estimate */
+
+.trace svg {
+  display: block;
+  width: 100%;
+  max-width: 25rem;
+  height: auto;
+  overflow: visible;
+}
+
+.trace-planned {
+  fill: none;
+  stroke: var(--granite);
+  stroke-opacity: 0.45;
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+}
+
+.trace-estimate {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trace-draw 3.4s cubic-bezier(0.45, 0.05, 0.3, 1) 0.4s forwards;
+}
+
+.trace-start {
+  fill: var(--snow);
+  stroke: var(--granite);
+  stroke-width: 1.5;
+}
+
+.trace-robot {
+  fill: var(--signal);
+  opacity: 0;
+  animation: trace-appear 0.5s ease 3.7s forwards;
+}
+
+@keyframes trace-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes trace-appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-estimate {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .trace-robot {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+.trace figcaption {
+  margin-top: 1.5rem;
+  max-width: 25rem;
+  color: var(--granite);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.trace figcaption p {
+  position: relative;
+  padding-left: 2.25rem;
+}
+
+.trace figcaption p + p {
+  margin-top: 0.5rem;
+}
+
+.key {
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 1.5rem;
+  height: 0;
+  border-top: 1.25px solid color-mix(in srgb, var(--granite) 60%, transparent);
+}
+
+.key-estimate {
+  border-top: 2px solid var(--signal);
+}
+
+@media (min-width: 56rem) {
+  .hero-body {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .trace {
+    justify-self: end;
+    width: 100%;
+    max-width: 25rem;
+  }
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding-top: var(--section-space);
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  margin-bottom: 1.75rem;
+}
+
+.section-body {
+  min-width: 0;
+}
+
+.section-intro {
+  max-width: var(--measure);
+  margin-bottom: 2.75rem;
+}
+
+@media (min-width: 56rem) {
+  .section {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    column-gap: 3rem;
+    align-items: start;
+  }
+
+  .section h2 {
+    position: sticky;
+    top: 1.75rem;
+    margin-bottom: 0;
+    line-height: 1.3; /* aligns with the first line of the section body */
+  }
+}
+
+/* ---------- Entries: work, projects, education ---------- */
+
+.entry + .entry {
+  margin-top: 3.25rem;
+}
+
+.entry h3 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.008em;
+}
+
+.entry > p,
+.entry > ul {
+  max-width: var(--measure);
+}
+
+.entry > * + * {
+  margin-top: 0.75rem;
+}
+
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.15rem 1.5rem;
+}
+
+.entry > .entry-head {
+  max-width: var(--measure);
+}
+
+.when {
+  color: var(--granite);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.where {
+  color: var(--granite);
+}
+
+.entry-head + .where {
+  margin-top: 0.15rem;
+}
+
+.dash-list li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.dash-list li + li {
+  margin-top: 0.5rem;
+}
+
+.dash-list li::before {
+  content: "\2013";
+  position: absolute;
+  left: 0;
+  color: var(--granite);
+}
+
+.built {
+  color: var(--granite);
+  font-size: 1rem;
+}
+
+.code-link a {
+  font-weight: 500;
+}
+
+/* More projects */
+
+.more-title {
+  font-size: 1.25rem;
+  margin-top: 4.5rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--frost);
+}
+
+.more-list {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.5rem 3rem;
+}
+
+@media (min-width: 40rem) {
+  .more-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.more-name {
+  font-weight: 600;
+}
+
+.more-list p {
+  margin-top: 0.3rem;
+  color: var(--granite);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Skills and languages */
+
+.pairs > div {
+  display: grid;
+  gap: 0.15rem 2rem;
+}
+
+.pairs > div + div {
+  margin-top: 1.25rem;
+}
+
+.pairs dt {
+  font-weight: 600;
+}
+
+.pairs dd {
+  max-width: var(--measure);
+}
+
+@media (min-width: 40rem) {
+  .pairs > div {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+}
+
+.pairs-short > div {
+  grid-template-columns: 8rem minmax(0, 1fr);
+}
+
+@media (min-width: 40rem) {
+  .pairs-short > div {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
+.pairs-short > div + div {
+  margin-top: 0.5rem;
+}
+
+.pairs-short dd {
+  color: var(--granite);
+}
+
+/* Contact */
+
+.contact-email {
+  font-size: clamp(1.5rem, 4.2vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.contact-email a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.contact-email noscript {
+  font-size: 1.125rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin-top: 1.75rem;
+}
+
+.contact-links a {
+  font-weight: 500;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  margin-top: var(--section-space);
+  color: var(--granite);
+  font-size: 0.9375rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-block: 2rem 3rem;
+  border-top: 1px solid var(--frost);
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  :root {
+    --snow: #ffffff;
+    --ink: #000000;
+    --granite: #444444;
+    --frost: #bbbbbb;
+    --signal: #ba0c2f;
+  }
+
+  body {
+    font-size: 10.5pt;
+  }
+
+  .site-header nav,
+  .hero-links,
+  .skip-link {
+    display: none;
+  }
+
+  .section {
+    padding-top: 1.75rem;
+    break-inside: avoid-page;
+  }
+
+  .section h2 {
+    position: static;
+  }
+
+  .trace-estimate {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .trace-robot {
+    animation: none;
+    opacity: 1;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
