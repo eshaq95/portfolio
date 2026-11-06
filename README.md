@@ -1,8 +1,8 @@
-# eshaq95.github.io
+# Portfolio
 
 The personal website of Eshaq Rahmani: mechanical engineer and software developer, studying for an MSc in Robotics at the University of Bristol.
 
-**Live site:** https://eshaq95.github.io
+**Live site:** https://eshaq95.github.io/portfolio
 
 ## What is here
 
@@ -36,7 +36,7 @@ Edit the text in `index.html`. Each section starts with a comment such as `<!-- 
 
 ## Publishing
 
-GitHub Pages serves the site from the `main` branch, so every push to `main` updates it within a minute or two.
+GitHub Pages serves the site from the root of the `main` branch (Settings, Pages, Deploy from a branch). Every push to `main` updates it within a minute or two.
 
 ## Licence
 
