@@ -1,5 +1,5 @@
 /* Eshaq Rahmani, portfolio
-   Light theme: snow and midnight-sun red. Dark theme: polar night and aurora green. */
+   Light theme: off-white with a deep red accent. Dark theme: deep blue with a soft green accent. */
 
 @font-face {
   font-family: "Schibsted Grotesk";
@@ -28,7 +28,7 @@
   --ink: #14232e;       /* text, a deep fjord slate */
   --granite: #586973;   /* secondary text */
   --frost: #d7dfe2;     /* hairlines */
-  --signal: #ba0c2f;    /* the one accent: Norwegian flag red */
+  --signal: #ba0c2f;    /* the one accent colour */
   --on-signal: #ffffff;
 
   --font: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

@@ -29,8 +29,9 @@ Edit the text in `index.html`. Each section starts with a comment such as `<!-- 
 
 ## Design
 
-- **Type:** Schibsted Grotesk, a typeface made for the Norwegian media group Schibsted.
-- **Colour:** snow white and Norwegian flag red by day; polar night and aurora green in dark mode, which follows the visitor's system setting.
+- **Layout:** minimal, with plenty of white space and section titles in a left-hand column.
+- **Type:** Schibsted Grotesk, a clean sans-serif, self-hosted with the site.
+- **Colour:** off-white with a deep red accent; in dark mode, deep blue with a soft green accent. The theme follows the visitor's system setting.
 - **Drawing:** the introduction shows a simulated odometry estimate drifting away from a planned circle-and-reverse path.
 - **Accessibility:** semantic HTML, visible keyboard focus and support for reduced motion.
 
