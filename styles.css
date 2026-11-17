@@ -30,6 +30,7 @@
   --frost: #d7dfe2;     /* hairlines */
   --signal: #ba0c2f;    /* the one accent colour */
   --on-signal: #ffffff;
+  --panel: #ffffff;     /* behind the project figures */
 
   --font: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --measure: 62ch;
@@ -45,6 +46,7 @@
     --frost: #22323d;
     --signal: #7ee0b4;
     --on-signal: #0d1821;
+    --panel: #112230;
   }
 }
 
@@ -55,6 +57,7 @@
   --frost: #22323d;
   --signal: #7ee0b4;
   --on-signal: #0d1821;
+  --panel: #112230;
 }
 
 /* ---------- Base ---------- */
@@ -529,6 +532,528 @@ a:hover {
   line-height: 1.55;
 }
 
+.more-thumb {
+  display: block;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 0.9rem;
+  overflow: hidden;
+  border: 1px solid var(--frost);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.more-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.more-thumb.is-contain img {
+  object-fit: contain;
+}
+
+.more-thumb.is-diagram {
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+}
+
+.more-thumb svg {
+  width: 88%;
+  height: auto;
+}
+
+.dg-box {
+  fill: none;
+  stroke: var(--granite);
+  stroke-width: 1.25;
+}
+
+.dg-text {
+  fill: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.dg-arrow {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 1.5;
+}
+
+.dg-head {
+  fill: var(--signal);
+}
+
+/* Project figures: interactive charts, and images from my repos */
+
+html:not(.js) .viz-js,
+html:not(.js) .js-only {
+  display: none;
+}
+
+.entry > .viz,
+.entry > .shot {
+  margin-top: 1.75rem;
+}
+
+.entry > .viz + .shot {
+  margin-top: 1.25rem;
+}
+
+.entry > .viz + :not(.shot),
+.entry > .shot + * {
+  margin-top: 1.5rem;
+}
+
+.viz {
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--frost);
+  border-radius: 10px;
+}
+
+@media (min-width: 40rem) {
+  .viz {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+.viz [hidden] {
+  display: none !important;
+}
+
+/* Controls */
+
+.viz-bar,
+.viz-bar-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+
+.viz-bar {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.viz-bar-row {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.viz-bar:empty {
+  display: none;
+}
+
+.seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.seg button,
+.text-button {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--granite);
+  cursor: pointer;
+}
+
+.seg button {
+  min-height: 2.25rem;
+  padding: 0.45rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--frost);
+  border-radius: 999px;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.seg button:hover {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--granite) 55%, transparent);
+}
+
+.seg button[aria-pressed="true"] {
+  color: var(--snow);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.viz-sub .seg button {
+  min-height: 2rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8125rem;
+  border-color: transparent;
+  border-radius: 6px;
+}
+
+.viz-sub .seg button:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.viz-sub .seg button[aria-pressed="true"] {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  border-color: transparent;
+}
+
+.viz-sub:empty {
+  display: none;
+}
+
+.text-button {
+  padding: 0.35rem 0;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.22em;
+}
+
+.text-button:hover {
+  color: var(--signal);
+  text-decoration-color: currentColor;
+}
+
+/* Sliders */
+
+.viz-sliders {
+  display: grid;
+  gap: 0.9rem 1.75rem;
+  margin-top: 1.1rem;
+}
+
+.viz-sliders:empty {
+  display: none;
+}
+
+@media (min-width: 36rem) {
+  .viz-sliders {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.viz > .viz-sliders:first-child {
+  margin-top: 0;
+}
+
+.slider label,
+.range-pair legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--granite);
+}
+
+.slider output,
+.range-pair output {
+  color: var(--ink);
+  font-weight: 500;}
+
+.range-pair {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.viz input[type="range"] {
+  display: block;
+  width: 100%;
+  margin: 0.45rem 0 0;
+  accent-color: var(--signal);
+  cursor: pointer;
+}
+
+/* Results of the turbine designer */
+
+.viz-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--frost);
+}
+
+.stat-label {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--granite);
+}
+
+.stat-value {
+  margin-top: 0.2rem;
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;}
+
+.viz-pair {
+  display: grid;
+  gap: 1.25rem 1.75rem;
+}
+
+@media (min-width: 36rem) {
+  .viz-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.mini-title {
+  margin-bottom: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--granite);
+}
+
+.viz-bar-end {
+  margin-top: 0.75rem;
+}
+
+/* The chart area */
+
+.viz-stage {
+  margin-top: 1rem;
+}
+
+.viz-stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;}
+
+.viz-stage > img,
+.hsv-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.viz .lbl {
+  fill: var(--ink);
+  font-size: 13px;
+}
+
+.viz .val,
+.viz .tick,
+.viz .ref-lbl {
+  fill: var(--granite);
+  font-size: 12px;
+}
+
+.viz .bar {
+  fill: color-mix(in srgb, var(--granite) 48%, transparent);
+}
+
+.viz .is-accent .bar {
+  fill: var(--signal);
+}
+
+.viz .is-accent .val {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.viz .is-muted .bar {
+  fill: color-mix(in srgb, var(--granite) 20%, transparent);
+}
+
+.viz .is-muted .lbl {
+  fill: var(--granite);
+}
+
+.viz .is-outline .bar {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.25;
+}
+
+.viz .grid line {
+  stroke: var(--frost);
+  stroke-width: 1;
+}
+
+.viz .grid line.zero,
+.viz .axis {
+  stroke: color-mix(in srgb, var(--granite) 55%, transparent);
+  stroke-width: 1;
+}
+
+.viz .ref {
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.viz .line {
+  fill: none;
+  stroke: var(--granite);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.viz .line-accent {
+  stroke: var(--signal);
+  stroke-width: 2.25;
+}
+
+.viz .line-dashed {
+  stroke-dasharray: 5 4;
+}
+
+.viz .line-ghost {
+  stroke-dasharray: 4 4;
+  opacity: 0.8;
+}
+
+.viz .line-none {
+  fill: none;
+  stroke: none;
+}
+
+.viz .dot {
+  fill: var(--signal);
+}
+
+.viz .band {
+  fill: color-mix(in srgb, var(--signal) 9%, transparent);
+}
+
+.viz .band-lbl {
+  fill: var(--signal);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.viz .guide {
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.4;
+}
+
+.viz .marker {
+  fill: var(--panel);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.viz svg:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Legend and caption */
+
+.viz-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin-top: 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--granite);
+}
+
+.viz-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.swatch {
+  width: 0.875rem;
+  height: 0.625rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--granite) 48%, transparent);
+}
+
+.swatch-accent {
+  background: var(--signal);
+}
+
+.swatch-outline {
+  background: transparent;
+  border: 1.25px solid var(--ink);
+}
+
+.viz figcaption {
+  margin-top: 0.9rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--granite);
+}
+
+.viz-readout {
+  min-height: 3.1em;
+  color: var(--ink);
+  font-size: 0.9375rem;}
+
+.viz-readout:empty {
+  display: none;
+}
+
+.viz-readout + .viz-note {
+  margin-top: 0.4rem;
+}
+
+.viz-note {
+  max-width: var(--measure);
+}
+
+/* Images from the repos */
+
+.shot {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+  .shot {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 1.5rem;
+    align-items: end;
+  }
+}
+
+.shot a {
+  display: block;
+  border-radius: 8px;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--frost);
+  border-radius: 8px;
+  background: #ffffff;
+  transition: border-color 160ms ease;
+}
+
+.shot a:hover img {
+  border-color: color-mix(in srgb, var(--granite) 60%, transparent);
+}
+
+.shot figcaption {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--granite);
+}
+
 /* Skills and languages */
 
 .pairs > div {
@@ -628,6 +1153,18 @@ a:hover {
     --granite: #444444;
     --frost: #bbbbbb;
     --signal: #ba0c2f;
+    --panel: #ffffff;
+  }
+
+  .viz-bar,
+  .viz-sliders,
+  .text-button {
+    display: none;
+  }
+
+  .viz,
+  .shot {
+    break-inside: avoid;
   }
 
   body {

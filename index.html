@@ -25,7 +25,10 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
   <script src="script.js" defer></script>
+  <script src="projects-data.js" defer></script>
+  <script src="projects.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -155,8 +158,19 @@
             <p class="when">2021</p>
           </div>
           <p>A personal project in Python that captures a game window in real time, finds target objects with HSV colour filtering and OpenCV template matching, and then acts on them through automated mouse and keyboard control while tracking its own inventory.</p>
+          <figure class="viz" data-viz="vision">
+            <div class="viz-bar" data-slot="controls"></div>
+            <div class="viz-stage" data-slot="stage">
+              <img src="assets/projects/vision-game.webp" width="960" height="523" loading="lazy" decoding="async" alt="A game frame captured by the agent, with magenta crosses on the iron ore it found.">
+            </div>
+            <div class="viz-sliders" data-slot="sliders"></div>
+            <figcaption>
+              <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
+              <p class="viz-note">A frame captured by the agent, with magenta crosses on the ore it found.<span class="js-only"> The sliders run the colour filter from its code: each pixel is converted to hue, saturation and value, saturation is lowered by 4 and value raised by 90, and only pixels inside all three ranges are kept. Template matching then searches what is left.</span></p>
+            </figcaption>
+          </figure>
           <p class="built">Built with Python, OpenCV, NumPy and PyAutoGUI.</p>
-          <p class="code-link"><a href="https://github.com/eshaq95/RunescapeCV-MiningAI">Code on GitHub</a></p>
+          <p class="code-link"><a href="https://github.com/eshaq95/OpenCV-Runescape-MiningAI">Code on GitHub</a></p>
         </article>
 
         <article class="entry project">
@@ -165,6 +179,19 @@
             <p class="when">2018</p>
           </div>
           <p>I wrote a MATLAB program that generates the twist and chord distribution of a turbine blade and picks an aerofoil profile for each section. I 3D printed the parts, assembled them with a micro-system electrical generator, and tested the prototype in the lab, where it produced measurable electrical output.</p>
+          <figure class="viz viz-js" data-viz="turbine">
+            <div class="viz-sliders" data-slot="sliders"></div>
+            <div class="viz-stats" data-slot="stats" aria-live="polite"></div>
+            <div class="viz-stage viz-pair" data-slot="stage"></div>
+            <div class="viz-bar viz-bar-end" data-slot="controls"></div>
+            <figcaption>
+              <p class="viz-note">The design method from my MATLAB program, rewritten in JavaScript. Change the operating point and it designs a new blade, with its twist, chord and power output. My original design was for 2,500 rpm in a 12 m/s wind, with three blades of 0.2 m radius. Once you change a setting, it shows as dashed lines. For reference, no turbine can beat the Betz limit, a power coefficient of 0.593.</p>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/projects/turbine-matlab.webp"><img src="assets/projects/turbine-matlab.webp" width="1100" height="517" loading="lazy" decoding="async" alt="The MATLAB program, its chord length plot and its output in the command window."></a>
+            <figcaption>The original MATLAB program and its output: a power coefficient of 0.484 at a tip speed ratio of 4.363, for a power output of 63.11 W.</figcaption>
+          </figure>
           <p class="built">Built with MATLAB, 3D printing and lab testing.</p>
           <p class="code-link"><a href="https://github.com/eshaq95/MATLAB-projects">Code on GitHub</a></p>
         </article>
@@ -175,6 +202,26 @@
             <p class="when">2024</p>
           </div>
           <p>For my MSc dissertation I tested 24,048 technical trading rules on Tesla stock data from 2010 to 2024 and compared the best of them with LSTM and SVM models. After correcting for data snooping with White’s Reality Check, none of the rules remained profitable at the 5% significance level, while an LSTM model using RSI and MACD inputs beat the best RSI rule out of sample by a statistically significant margin.</p>
+          <figure class="viz viz-js" data-viz="trading">
+            <div class="viz-bar">
+              <div data-slot="controls"></div>
+              <div class="viz-sub" data-slot="sub"></div>
+            </div>
+            <div class="viz-stage" data-slot="stage"></div>
+            <ul class="viz-legend" data-slot="legend">
+              <li><span class="swatch swatch-accent" aria-hidden="true"></span>Machine learning model</li>
+              <li><span class="swatch" aria-hidden="true"></span>Trading rule</li>
+              <li><span class="swatch swatch-outline" aria-hidden="true"></span>Buy and hold</li>
+            </ul>
+            <figcaption>
+              <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
+              <p class="viz-note">Results from my dissertation’s tables. Each rule is the best of its type, chosen on data from 2010 to June 2021.</p>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/projects/trading-rules-test.webp"><img src="assets/projects/trading-rules-test.webp" width="1100" height="546" loading="lazy" decoding="async" alt="Line chart of log cumulative returns from June 2021 to March 2024. The RSI and MACD rules finish highest, while buy and hold and the moving average rule finish below zero."></a>
+            <figcaption>From the report: log cumulative returns of the best rules against buy and hold over the test period.</figcaption>
+          </figure>
           <p class="built">Built with Python, using LSTM and SVM models.</p>
           <p class="code-link"><a href="https://github.com/eshaq95/Dissertation-ML-vs-Technical-Analysis-">Code and report on GitHub</a></p>
         </article>
@@ -185,8 +232,63 @@
             <p class="when">2023</p>
           </div>
           <p>I led the code for a team project that compared four models on the 20 Newsgroups dataset: Naive Bayes, LSTM, CNN and BERT. A fine-tuned BERT model performed best, with 70% accuracy and a macro F1 score of 0.69.</p>
+          <figure class="viz viz-js" data-viz="text">
+            <div class="viz-bar" data-slot="controls"></div>
+            <div class="viz-stage" data-slot="stage"></div>
+            <figcaption>
+              <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
+              <p class="viz-note">F1 score for each of the 20 newsgroups, ordered by the average of the four models. Every model found the same three groups hardest, highlighted: talk.religion.misc, talk.politics.misc and alt.atheism.</p>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="assets/projects/text-wordclouds.webp"><img src="assets/projects/text-wordclouds.webp" width="828" height="778" loading="lazy" decoding="async" alt="Twenty word clouds, one for each newsgroup, such as gun and firearm for talk.politics.guns and space and satellite for sci.space."></a>
+            <figcaption>Word clouds of the most common words in each newsgroup, from our notebook.</figcaption>
+          </figure>
           <p class="built">Built with Python, PyTorch, Hugging Face Transformers and Keras.</p>
           <p class="code-link"><a href="https://github.com/eshaq95/Text-Categorization-NLP-Newsgrouping">Code on GitHub</a></p>
+        </article>
+
+        <article class="entry project">
+          <div class="entry-head">
+            <h3>Ambulance call forecasting</h3>
+            <p class="when">2023</p>
+          </div>
+          <p>I forecast weekly call demand for Jakarta’s charitable 118 ambulance service from 3,742 calls between January 2017 and October 2022. I compared five forecasting models against a naive baseline, from exponential smoothing to ARIMA and TBATS. Holt’s linear model was the most accurate in cross-validation, but I chose TBATS because it captured the more complex patterns of the COVID-19 period, and used it to forecast the next eight weeks. I presented the forecast and the busiest hours and days, to inform staff scheduling, on an A2 poster.</p>
+          <figure class="viz viz-js" data-viz="ambulance">
+            <div class="viz-bar" data-slot="controls"></div>
+            <div class="viz-stage" data-slot="stage"></div>
+            <figcaption>
+              <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
+              <p class="viz-note">Built from the call data in the repo. As in my R code, the 8 calls with no time recorded are removed and calls are grouped by week. The dashed line is the TBATS forecast.</p>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="https://github.com/eshaq95/Time-Series-Forecasting-Ambulance-Service-Calls/blob/main/poster/Final_poster.pdf"><img src="assets/projects/ambulance-poster.webp" width="1200" height="849" loading="lazy" decoding="async" alt="The A2 poster, with sections on the data, the six models, their evaluation and the eight-week forecast."></a>
+            <figcaption>My A2 poster, with the models, their evaluation and the forecast. Select it to open the PDF on GitHub.</figcaption>
+          </figure>
+          <p class="built">Built with R and the forecast package.</p>
+          <p class="code-link"><a href="https://github.com/eshaq95/Time-Series-Forecasting-Ambulance-Service-Calls">Code and poster on GitHub</a></p>
+        </article>
+
+        <article class="entry project">
+          <div class="entry-head">
+            <h3>Car insurance cross-sell model</h3>
+            <p class="when">2022</p>
+          </div>
+          <p>A health insurer wanted to know which of its customers would be interested in car insurance. Only 12.2% of the 304,887 customers in the data were. I chose features with chi-square tests and Pearson correlation, compared SMOTEENN, SMOTENC and class weights for the imbalance, and tuned XGBoost, random forest and k-nearest neighbours models. XGBoost did best, with a PR-AUC of 0.600 and a ROC-AUC of 0.775.</p>
+          <figure class="viz viz-js" data-viz="car">
+            <div class="viz-bar">
+              <div data-slot="controls"></div>
+              <div class="viz-sub" data-slot="sub"></div>
+            </div>
+            <div class="viz-stage" data-slot="stage"></div>
+            <figcaption>
+              <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
+              <p class="viz-note">Interest by group is from the raw data in the repo, before cleaning. Model scores are for the best tuned version of each model.</p>
+            </figcaption>
+          </figure>
+          <p class="built">Built with Python, scikit-learn, XGBoost and imbalanced-learn.</p>
+          <p class="code-link"><a href="https://github.com/eshaq95/Car-Insurance-Prediction-ML">Code and report on GitHub</a></p>
         </article>
 
         <article class="entry project">
@@ -202,28 +304,37 @@
         <h3 class="more-title">More projects</h3>
         <ul class="more-list">
           <li>
+            <div class="more-thumb"><img src="assets/projects/game-play.webp" width="900" height="524" loading="lazy" decoding="async" alt="The game: waste items lie on wooden paths that lead to four coloured recycling bins."></div>
             <div class="entry-head"><a class="more-name" href="https://github.com/eshaq95/GarbageSorting-WebGame">Educational game website</a><span class="when">2022</span></div>
             <p>Led the front end of a team-built game that teaches children how to sort waste.</p>
           </li>
           <li>
+            <div class="more-thumb is-diagram">
+              <svg viewBox="0 0 340 120" role="img" aria-label="The app’s three parts: a front end, a RESTful API and an SQL database.">
+                <rect class="dg-box" x="6" y="38" width="92" height="44" rx="6"/>
+                <text class="dg-text" x="52" y="60">Front end</text>
+                <path class="dg-arrow" d="M102 60 H120"/>
+                <path class="dg-head" d="M126 60 L118 55.5 V64.5 Z"/>
+                <rect class="dg-box" x="128" y="38" width="92" height="44" rx="6"/>
+                <text class="dg-text" x="174" y="60">REST API</text>
+                <path class="dg-arrow" d="M224 60 H242"/>
+                <path class="dg-head" d="M248 60 L240 55.5 V64.5 Z"/>
+                <path class="dg-box" d="M252 40 a42 8 0 0 0 84 0 a42 8 0 0 0 -84 0 V80 a42 8 0 0 0 84 0 V40"/>
+                <text class="dg-text" x="294" y="64">SQL</text>
+              </svg>
+            </div>
             <div class="entry-head"><span class="more-name">Online movie store</span><span class="when">2021</span></div>
             <p>A full-stack web app I built on my own, with a RESTful API and an SQL database.</p>
           </li>
           <li>
+            <div class="more-thumb"><img src="assets/projects/dashboard-exec.webp" width="1000" height="800" loading="lazy" decoding="async" alt="The executive dashboard for June 2025, with monthly recurring revenue, net revenue and key figures."></div>
             <div class="entry-head"><a class="more-name" href="https://github.com/eshaq95/commercial-analytics-dashboard">Commercial analytics dashboards</a><span class="when">2025</span></div>
             <p>Tableau dashboards for a fictional subscription brand, built on a PostgreSQL star schema with synthetic data.</p>
           </li>
           <li>
+            <div class="more-thumb is-contain"><img src="assets/projects/credit-roc.webp" width="644" height="448" loading="lazy" decoding="async" alt="ROC curves of the linear and logistic regression scorecards, for two groups of checking account status."></div>
             <div class="entry-head"><a class="more-name" href="https://github.com/eshaq95/Credit-Risk-Scoring-Project">Credit risk scorecards</a><span class="when">2023</span></div>
             <p>Linear and logistic regression scorecards on German credit data, with features chosen by weight of evidence and information value.</p>
-          </li>
-          <li>
-            <div class="entry-head"><a class="more-name" href="https://github.com/eshaq95/Time-Series-Forecasting-Ambulance-Service-Calls">Ambulance call forecasting</a><span class="when">2023</span></div>
-            <p>Forecasts of call demand for a charitable ambulance service in Jakarta, from 3,742 calls over six years, comparing ARIMA, TBATS and exponential smoothing.</p>
-          </li>
-          <li>
-            <div class="entry-head"><a class="more-name" href="https://github.com/eshaq95/Car-Insurance-Prediction-ML">Car insurance cross-sell model</a><span class="when">2022</span></div>
-            <p>XGBoost, random forest and k-nearest neighbours compared for predicting interest in car insurance. XGBoost did best, with a ROC&#8209;AUC of 0.775.</p>
           </li>
         </ul>
       </div>
