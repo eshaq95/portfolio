@@ -24,11 +24,12 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <!-- The ?v= numbers make browsers fetch fresh copies after an update. Change them whenever the files change. -->
+  <link rel="stylesheet" href="styles.css?v=20261117b">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="script.js" defer></script>
-  <script src="projects-data.js" defer></script>
-  <script src="projects.js" defer></script>
+  <script src="script.js?v=20261117b" defer></script>
+  <script src="projects-data.js?v=20261117b" defer></script>
+  <script src="projects.js?v=20261117b" defer></script>
 
   <script type="application/ld+json">
   {
@@ -78,8 +79,7 @@
       <div class="hero-body">
         <div class="hero-text">
           <p class="lead">Mechanical engineer and software developer, studying for an MSc in Robotics at the University of Bristol.</p>
-          <p>I have taken a laboratory inventory system from concept to production in Norway, built autonomous drone control in Simulink, and I am now working on robot odometry and machine vision.</p>
-          <p class="status">Based in Bristol, UK. I finish my MSc in September 2027 and am open to graduate roles in robotics, software and engineering.</p>
+          <p class="status">Based in Bristol. Open to graduate roles in robotics, software and engineering from September 2027.</p>
           <ul class="hero-links">
             <li><a data-email-user="eshaq-rahmani" data-email-domain="hotmail.com" href="#contact">Email</a></li>
             <li><a href="https://www.linkedin.com/in/eshaq-rahmani-495043197/" rel="me">LinkedIn</a></li>
@@ -88,16 +88,16 @@
         </div>
 
         <figure class="trace">
-          <svg viewBox="70 22 284 266" role="img" aria-labelledby="trace-title">
-            <title id="trace-title">A planned robot path, a circle followed by a reverse, and a simulated odometry estimate that drifts away from it and finishes short of the start.</title>
-            <path class="trace-planned" d="M108.0 270.0 L119.2 270.0 L130.4 270.0 L141.6 270.0 L152.8 270.0 L164.0 270.0 L175.2 270.0 L186.4 270.0 L197.6 270.0 L208.8 270.0 L220.0 270.0 L227.8 269.7 L235.6 268.9 L243.3 267.6 L250.9 265.7 L258.3 263.2 L265.6 260.3 L272.6 256.9 L279.4 253.0 L285.8 248.6 L292.0 243.8 L297.8 238.6 L303.2 232.9 L308.3 227.0 L312.9 220.6 L317.0 214.0 L320.7 207.1 L323.8 200.0 L326.5 192.6 L328.7 185.1 L330.3 177.4 L331.4 169.7 L331.9 161.9 L331.9 154.1 L331.4 146.3 L330.3 138.5 L328.7 130.9 L326.5 123.4 L323.8 116.0 L320.7 108.9 L317.0 102.0 L312.9 95.4 L308.3 89.0 L303.2 83.1 L297.8 77.4 L292.0 72.2 L285.8 67.4 L279.4 63.0 L272.6 59.1 L265.6 55.7 L258.3 52.8 L250.9 50.3 L243.3 48.4 L235.6 47.1 L227.8 46.3 L220.0 46.0 L212.2 46.3 L204.4 47.1 L196.7 48.4 L189.1 50.3 L181.7 52.8 L174.4 55.7 L167.4 59.1 L160.6 63.0 L154.2 67.4 L148.0 72.2 L142.2 77.4 L136.8 83.1 L131.7 89.0 L127.1 95.4 L123.0 102.0 L119.3 108.9 L116.2 116.0 L113.5 123.4 L111.3 130.9 L109.7 138.5 L108.6 146.3 L108.1 154.1 L108.1 161.9 L108.6 169.7 L109.7 177.4 L111.3 185.1 L113.5 192.6 L116.2 200.0 L119.3 207.1 L123.0 214.0 L127.1 220.6 L131.7 227.0 L136.8 232.9 L142.2 238.6 L148.0 243.8 L154.2 248.6 L160.6 253.0 L167.4 256.9 L174.4 260.3 L181.7 263.2 L189.1 265.7 L196.7 267.6 L204.4 268.9 L212.2 269.7 L220.0 270.0"/>
-            <path class="trace-estimate" pathLength="1" d="M108.0 270.0 L119.2 270.0 L130.4 270.0 L141.6 270.0 L152.8 270.0 L164.0 270.0 L175.2 270.0 L186.4 270.0 L197.6 270.0 L208.8 270.0 L220.0 270.0 L227.8 269.7 L235.6 268.9 L243.3 267.6 L250.9 265.8 L258.4 263.4 L265.6 260.6 L272.7 257.3 L279.5 253.5 L286.1 249.2 L292.3 244.5 L298.3 239.4 L303.8 233.9 L309.0 228.0 L313.8 221.8 L318.1 215.3 L322.0 208.6 L325.4 201.5 L328.3 194.3 L330.8 186.8 L332.7 179.3 L334.1 171.6 L335.0 163.8 L335.4 156.0 L335.2 148.2 L334.5 140.4 L333.3 132.7 L331.5 125.1 L329.2 117.6 L326.5 110.3 L323.2 103.2 L319.5 96.3 L315.3 89.7 L310.7 83.4 L305.7 77.4 L300.2 71.8 L294.5 66.5 L288.3 61.7 L281.9 57.3 L275.1 53.3 L268.1 49.8 L260.9 46.8 L253.5 44.3 L246.0 42.2 L238.3 40.7 L230.5 39.8 L222.7 39.3 L214.9 39.4 L207.1 40.0 L199.4 41.1 L191.8 42.8 L184.2 45.0 L176.9 47.6 L169.7 50.8 L162.8 54.4 L156.2 58.5 L149.8 63.1 L143.8 68.1 L138.1 73.4 L132.8 79.1 L127.9 85.2 L123.4 91.6 L119.3 98.3 L115.7 105.3 L112.6 112.4 L110.0 119.8 L107.9 127.3 L106.3 135.0 L105.3 142.7 L104.7 150.5 L104.7 158.4 L105.2 166.2 L106.3 173.9 L107.8 181.6 L109.9 189.1 L112.5 196.5 L115.6 203.7 L119.1 210.6 L123.2 217.3 L127.6 223.7 L132.5 229.8 L137.8 235.6 L143.5 241.0 L149.5 246.0 L155.8 250.5 L162.5 254.6 L169.4 258.3 L176.5 261.5 L183.9 264.2 L191.4 266.4 L199.0 268.1 L188.0 266.0 L177.0 264.0 L166.0 262.0 L155.0 259.9 L143.9 257.9 L132.9 255.8 L121.9 253.8 L110.9 251.8 L99.9 249.7 L88.9 247.7"/>
-            <circle class="trace-start" cx="108" cy="270" r="4.5"/>
-            <circle class="trace-robot" cx="88.9" cy="247.7" r="4.5"/>
+          <svg viewBox="0 0 310 226" role="img" aria-labelledby="trace-title">
+            <title id="trace-title">Our robot’s test course, 300 mm forward, a left and a right loop of 200 mm radius, a spin and 300 mm back in reverse, with a simulated odometry estimate that drifts away from it and ends about 9 cm from the start.</title>
+            <path class="trace-planned" d="M156.2 189.4 L156.2 182.4 L156.2 175.4 L156.2 168.4 L156.2 161.4 L156.2 154.4 L156.2 147.4 L156.2 140.4 L156.2 133.4 L156.2 126.4 L156.2 119.4 L156.2 112.4 L156.2 105.4 L156.2 98.4 L156.2 91.4 L156.2 84.4 L156.0 78.3 L155.2 72.2 L153.9 66.3 L152.1 60.4 L149.8 54.8 L147.0 49.4 L143.7 44.2 L140.0 39.3 L135.9 34.8 L131.4 30.7 L126.6 26.9 L121.5 23.6 L116.1 20.8 L110.4 18.4 L104.6 16.6 L98.7 15.2 L92.6 14.4 L86.5 14.1 L80.4 14.3 L74.3 15.1 L68.4 16.4 L62.5 18.2 L56.9 20.5 L51.5 23.3 L46.3 26.6 L41.4 30.3 L36.9 34.4 L32.8 38.9 L29.0 43.7 L25.7 48.8 L22.9 54.2 L20.5 59.9 L18.7 65.7 L17.3 71.6 L16.5 77.7 L16.2 83.8 L16.4 89.9 L17.2 96.0 L18.5 101.9 L20.3 107.8 L22.6 113.4 L25.4 118.8 L28.7 124.0 L32.4 128.9 L36.5 133.4 L41.0 137.5 L45.8 141.3 L50.9 144.6 L56.3 147.4 L62.0 149.8 L67.8 151.6 L73.7 153.0 L79.8 153.8 L85.9 154.1 L92.0 153.9 L98.1 153.1 L104.0 151.8 L109.9 150.0 L115.5 147.7 L120.9 144.9 L126.1 141.6 L131.0 137.9 L135.5 133.8 L139.6 129.3 L143.4 124.5 L146.7 119.4 L149.5 114.0 L151.9 108.3 L153.7 102.5 L155.1 96.6 L155.9 90.5 L156.2 84.4 L156.4 78.3 L157.2 72.2 L158.5 66.3 L160.3 60.4 L162.6 54.8 L165.4 49.4 L168.7 44.2 L172.4 39.3 L176.5 34.8 L181.0 30.7 L185.8 26.9 L190.9 23.6 L196.3 20.8 L202.0 18.4 L207.8 16.6 L213.7 15.2 L219.8 14.4 L225.9 14.1 L232.0 14.3 L238.1 15.1 L244.0 16.4 L249.9 18.2 L255.5 20.5 L260.9 23.3 L266.1 26.6 L271.0 30.3 L275.5 34.4 L279.6 38.9 L283.4 43.7 L286.7 48.8 L289.5 54.2 L291.9 59.9 L293.7 65.7 L295.1 71.6 L295.9 77.7 L296.2 83.8 L296.0 89.9 L295.2 96.0 L293.9 101.9 L292.1 107.8 L289.8 113.4 L287.0 118.8 L283.7 124.0 L280.0 128.9 L275.9 133.4 L271.4 137.5 L266.6 141.3 L261.5 144.6 L256.1 147.4 L250.4 149.8 L244.6 151.6 L238.7 153.0 L232.6 153.8 L226.5 154.1 L220.4 153.9 L214.3 153.1 L208.4 151.8 L202.5 150.0 L196.9 147.7 L191.5 144.9 L186.3 141.6 L181.4 137.9 L176.9 133.8 L172.8 129.3 L169.0 124.5 L165.7 119.4 L162.9 114.0 L160.5 108.3 L158.7 102.5 L157.3 96.6 L156.5 90.5 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 84.4 L156.2 91.4 L156.2 98.4 L156.2 105.4 L156.2 112.4 L156.2 119.4 L156.2 126.4 L156.2 133.4 L156.2 140.4 L156.2 147.4 L156.2 154.4 L156.2 161.4 L156.2 168.4 L156.2 175.4 L156.2 182.4 L156.2 189.4 L156.2 189.4"/>
+            <path class="trace-estimate" pathLength="1" d="M156.2 189.4 L156.2 182.4 L156.2 175.4 L156.2 168.4 L156.2 161.4 L156.2 154.4 L156.2 147.4 L156.2 140.4 L156.2 133.4 L156.2 126.4 L156.2 119.4 L156.2 112.4 L156.2 105.4 L156.2 98.4 L156.2 91.4 L156.2 84.4 L156.0 78.3 L155.2 72.2 L154.0 66.3 L152.2 60.4 L150.0 54.7 L147.2 49.3 L144.1 44.1 L140.5 39.1 L136.4 34.5 L132.1 30.3 L127.3 26.4 L122.3 22.9 L117.0 19.9 L111.4 17.4 L105.7 15.3 L99.8 13.7 L93.8 12.7 L87.7 12.1 L81.6 12.0 L75.5 12.5 L69.5 13.5 L63.6 15.0 L57.8 17.0 L52.2 19.4 L46.8 22.4 L41.8 25.7 L37.0 29.5 L32.5 33.7 L28.4 38.3 L24.8 43.1 L21.5 48.3 L18.7 53.7 L16.4 59.4 L14.5 65.2 L13.2 71.2 L12.3 77.2 L12.0 83.3 L12.2 89.4 L12.9 95.5 L14.1 101.5 L15.8 107.3 L18.1 113.0 L20.7 118.5 L23.9 123.7 L27.4 128.7 L31.4 133.3 L35.8 137.6 L40.5 141.5 L45.5 145.0 L50.8 148.0 L56.3 150.6 L62.0 152.7 L67.9 154.4 L73.9 155.5 L80.0 156.1 L86.1 156.2 L92.2 155.7 L98.2 154.8 L104.2 153.3 L110.0 151.4 L115.6 149.0 L120.9 146.1 L126.1 142.7 L130.9 139.0 L135.3 134.8 L139.4 130.3 L143.2 125.5 L146.4 120.3 L149.3 114.9 L151.7 109.3 L153.6 103.5 L154.9 97.5 L156.3 91.6 L158.1 85.7 L160.4 80.1 L163.2 74.7 L166.5 69.5 L170.2 64.6 L174.2 60.1 L178.7 55.9 L183.4 52.1 L188.5 48.7 L193.9 45.7 L199.5 43.3 L205.2 41.3 L211.2 39.8 L217.2 38.8 L223.3 38.3 L229.4 38.3 L235.5 38.9 L241.5 39.9 L247.4 41.5 L253.1 43.6 L258.7 46.1 L264.0 49.1 L269.0 52.6 L273.8 56.4 L278.2 60.7 L282.2 65.3 L285.8 70.2 L289.0 75.4 L291.7 80.9 L294.0 86.5 L295.7 92.4 L297.0 98.4 L297.7 104.4 L298.0 110.5 L297.7 116.6 L296.9 122.7 L295.6 128.6 L293.8 134.5 L291.5 140.1 L288.8 145.6 L285.6 150.8 L281.9 155.7 L277.9 160.3 L273.5 164.5 L268.7 168.3 L263.7 171.8 L258.3 174.7 L252.8 177.2 L247.0 179.3 L241.1 180.8 L235.1 181.9 L229.0 182.4 L222.9 182.4 L216.8 181.9 L210.8 180.8 L204.9 179.3 L199.1 177.3 L193.6 174.8 L188.2 171.8 L183.1 168.4 L178.4 164.6 L174.0 160.4 L169.9 155.8 L166.3 150.9 L163.1 145.7 L160.3 140.3 L158.0 134.6 L156.2 128.8 L154.9 122.8 L154.1 116.7 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L153.8 110.6 L152.5 117.5 L151.2 124.4 L150.0 131.3 L148.7 138.2 L147.4 145.1 L146.1 151.9 L144.9 158.8 L143.6 165.7 L142.3 172.6 L141.1 179.5 L139.8 186.4 L138.5 193.2 L137.2 200.1 L136.0 207.0 L134.7 213.9 L134.7 213.9"/>
+            <circle class="trace-start" cx="156.2" cy="189.4" r="4.5"/>
+            <circle class="trace-robot" cx="134.7" cy="213.9" r="4.5"/>
           </svg>
           <figcaption>
-            <p><span class="key key-planned" aria-hidden="true"></span>The path our MSc team robot has to drive: a circle, then a reverse back to the start.</p>
-            <p><span class="key key-estimate" aria-hidden="true"></span>A simulated odometry estimate of that drive, with a 3% error in wheel separation, the topic of my first report.</p>
+            <p><span class="key key-planned" aria-hidden="true"></span>Our team robot’s test course: forward, a left and a right loop, a spin, then back.</p>
+            <p><span class="key key-estimate" aria-hidden="true"></span>Simulated odometry with a 3% error in wheel separation, ending about 9 cm from the start.</p>
           </figcaption>
         </figure>
       </div>
@@ -110,7 +110,7 @@
         <p class="section-intro">I am studying for an MSc in Robotics at the University of Bristol, from September 2026 to September 2027, and learning C++ along the way.</p>
         <div class="entry">
           <h3>Odometry for our team robot</h3>
-          <p>I am responsible for the subsystem that estimates the robot’s position from its wheel motion, while my teammate builds the motor subsystem. My first report focused on wheel separation, and we are now working towards reproducing a circle path with a reverse at the end.</p>
+          <p>I am responsible for the subsystem that estimates the robot’s position from its wheel motion, while my teammate builds the motor subsystem. My first report focused on wheel separation. We are now working towards a test course of two loops, a spin and a reverse, comparing the real robot with its digital twin.</p>
         </div>
         <div class="entry">
           <h3>Resistor colour bands, a machine vision group project</h3>
@@ -215,7 +215,7 @@
             </ul>
             <figcaption>
               <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
-              <p class="viz-note">Results from my dissertation’s tables. Each rule is the best of its type, chosen on data from 2010 to June 2021.</p>
+              <p class="viz-note">From my dissertation’s tables. Each rule is the best of its type on data from 2010 to June 2021, and the Reality Check tests it against buy and hold over that same period.</p>
             </figcaption>
           </figure>
           <figure class="shot">
@@ -259,7 +259,7 @@
             <div class="viz-stage" data-slot="stage"></div>
             <figcaption>
               <p class="viz-readout" data-slot="readout" aria-live="polite"></p>
-              <p class="viz-note">Built from the call data in the repo. As in my R code, the 8 calls with no time recorded are removed and calls are grouped by week. The dashed line is the TBATS forecast.</p>
+              <p class="viz-note">From the call data in the repo, grouped by week as in my R code, without the 8 calls that have no time. The shaded strip is the TBATS forecast. Hover, tap or use the arrow keys to read a week.</p>
             </figcaption>
           </figure>
           <figure class="shot">

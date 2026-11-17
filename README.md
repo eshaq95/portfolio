@@ -31,6 +31,8 @@ Then open http://localhost:8000.
 
 Edit the text in `index.html`. Each section starts with a comment such as `<!-- Projects -->`. To add a project, copy an `<article class="entry project">` block and change the text.
 
+When you change `styles.css` or a script, also change the `?v=` number on its link in `index.html`, so visitors' browsers load the new file instead of an old saved copy.
+
 ## Project figures
 
 Every image in `assets/projects/` and every number in `projects-data.js` comes from one of my GitHub repos: a notebook output, a report or poster, a screenshot or the raw data. The student number is removed from the poster image. To rebuild them, clone the repos listed at the top of `tools/build_project_assets.py` into one folder, then run:
@@ -57,7 +59,7 @@ Without JavaScript, the figures that need it are hidden and the images still sho
 - **Layout:** minimal, with plenty of white space and section titles in a left-hand column.
 - **Type:** Schibsted Grotesk, a clean sans-serif, self-hosted with the site.
 - **Colour:** off-white with a deep red accent; in dark mode, deep blue with a soft green accent. The theme follows the visitor's system setting.
-- **Drawing:** the introduction shows a simulated odometry estimate drifting away from a planned circle-and-reverse path.
+- **Drawing:** the introduction shows our team robot's Phase 2 test course (300 mm forward, a left and a right loop of 200 mm radius, a 360° spin and 300 mm in reverse) and a simulated odometry estimate with a 3% error in wheel separation drifting away from it. The social preview image shows the same drawing.
 - **Figures:** the project charts use the same colours as the page, so they follow the light and dark themes.
 - **Accessibility:** semantic HTML, visible keyboard focus and support for reduced motion.
 

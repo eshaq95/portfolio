@@ -106,8 +106,8 @@
     const x0 = labelWidth + padLeft;
     const plotWidth = Math.max(40, width - x0 - padRight);
     const x = (v) => x0 + ((v - lo) / (hi - lo)) * plotWidth;
-    const barHeight = options.barHeight || 15;
-    const rowHeight = stacked ? barHeight + 24 : barHeight + 11;
+    const barHeight = options.barHeight || 14;
+    const rowHeight = stacked ? barHeight + 24 : barHeight + (options.gap || 10);
     const top = 6;
     const bottom = top + rows.length * rowHeight;
     const height = bottom + ((options.refs || []).length ? 26 : 6);
@@ -163,7 +163,7 @@
   function columnChart(stage, values, labels, options = {}) {
     stage.textContent = "";
     const width = Math.max(260, stage.clientWidth);
-    const height = options.height || 230;
+    const height = options.height || 200;
     const m = { l: 40, r: 6, t: 10, b: 26 };
     const step = options.step || 100;
     const yMax = niceMax(Math.max(...values), step);
@@ -196,7 +196,7 @@
   function lineChart(stage, series, options) {
     stage.textContent = "";
     const width = Math.max(240, stage.clientWidth);
-    const height = options.height || Math.round(Math.min(320, Math.max(210, width * 0.4)));
+    const height = options.height || Math.round(Math.min(280, Math.max(200, width * 0.4)));
     const m = { l: options.left || 40, r: 12, t: 12, b: 28 };
     const ys = series.flatMap((s) => s.points.map((p) => p[1]));
     const [xMin, xMax] = options.xDomain;
@@ -298,8 +298,7 @@
       const end = forecast[forecast.length - 1][0] + 4 * day;
       const first = A.forecast[0].toFixed(1);
       const last = A.forecast[A.forecast.length - 1].toFixed(1);
-      const hint = "Hover, tap or use the arrow keys to read a week.";
-      const forecastText = `The TBATS forecast for the eight weeks from ${dateFormat.format(start)} rises from ${first} to ${last} calls a week.`;
+      const forecastText = `Forecast: ${first} rising to ${last} calls a week, from ${dateFormat.format(start)}.`;
       const hours = Array.from({ length: 24 }, (_, h) => String(h).padStart(2, "0"));
       const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
       const months = ["Jan", "Mar", "May", "Jul", "Sep", "Nov"];
@@ -326,7 +325,7 @@
             const [t, v] = points[i];
             readout.textContent = i < shown.length
               ? `Week starting ${dateFormat.format(t)}: ${v} ${v === 1 ? "call" : "calls"}.`
-              : `Forecast for the week of ${dateFormat.format(t)}: ${v.toFixed(1)} calls.`;
+              : `Forecast, week of ${dateFormat.format(t)}: ${v.toFixed(1)} calls.`;
           },
         });
       };
@@ -334,20 +333,20 @@
       const draw = () => {
         if (view === "weeks") {
           weekly(weeks[0][0], [2017, 2018, 2019, 2020, 2021, 2022].map((yr) => [Date.UTC(yr, 0, 1), String(yr)]),
-            `Calls fell from about 20 a week in 2017 to under 10 by 2022. The shaded strip is the forecast. ${hint}`,
+            "Calls fell from about 20 a week in 2017 to under 10 by 2022.",
             "Weekly ambulance calls from January 2017 to October 2022, falling from about 20 a week to under 10, followed by an eight-week forecast.");
         } else if (view === "forecast") {
           weekly(Date.UTC(2022, 0, 1), months.map((name, i) => [Date.UTC(2022, i * 2, 1), i ? name : "Jan 2022"]),
-            `${forecastText} ${hint}`,
+            forecastText,
             `Weekly ambulance calls in 2022, followed by the eight-week TBATS forecast, which rises from ${first} to ${last} calls a week.`);
         } else if (view === "hour") {
-          readout.textContent = "Calls by the hour they came in. The busiest hours were 05:00 to 07:00, then 10:00 to 11:00.";
+          readout.textContent = "Busiest hours: 05:00 to 07:00, then 10:00 to 11:00.";
           columnChart(stage, A.hour, hours, {
             label: "Calls by hour of day", step: 100, labelEvery: 3, highlight: [5, 6, 10],
             tipLabel: (i) => `${hours[i]}:00 to ${hours[(i + 1) % 24]}:00`,
           });
         } else {
-          readout.textContent = "Calls by day of the week. Weekdays were busier than weekends, and Sunday was the quietest day.";
+          readout.textContent = "Weekdays were busier than weekends. Sunday was the quietest.";
           columnChart(stage, A.weekday, days, { label: "Calls by day of week", step: 100 });
         }
       };
@@ -382,7 +381,7 @@
       const draw = () => {
         if (view === "groups") {
           const f = C.features.find((x) => x.key === feature);
-          readout.textContent = `${overall.toFixed(1)}% of all ${number.format(C.rows)} customers were interested (dashed line). Groups above that rate are highlighted.`;
+          readout.textContent = `Dashed line: ${overall.toFixed(1)}% of all customers. Groups above it are highlighted.`;
           barChart(stage, f.groups.map(([name, n, k]) => {
             const rate = (k / n) * 100;
             return {
@@ -445,13 +444,13 @@
         const model = models.find((mo) => mo.name === current);
         const scores = order.map((name) => model.classes.find((c) => c[0] === name));
         const third = scores.map((c) => c[3]).sort((a, b) => a - b)[2];
-        readout.textContent = `${model.name}: accuracy ${model.accuracy.toFixed(2)} and macro F1 ${model.macroF1.toFixed(2)}.`;
+        readout.textContent = `${model.name}: accuracy ${model.accuracy.toFixed(2)}, macro F1 ${model.macroF1.toFixed(2)}.`;
         barChart(stage, scores.map(([name, p, r, score]) => ({
           label: name,
           value: score,
           kind: score <= third ? "accent" : "",
           tip: `${name}: precision ${p.toFixed(2)}, recall ${r.toFixed(2)}, F1 ${score.toFixed(2)}`,
-        })), { label: `F1 score by newsgroup for ${model.name}`, domain: [0, 1], labelWidth: 200, barHeight: 12 });
+        })), { label: `F1 score by newsgroup for ${model.name}`, domain: [0, 1], labelWidth: 190, barHeight: 10, gap: 8 });
       };
       segmented(slot(figure, "controls"), "Choose a model", models.map((mo) => [mo.name, mo.name]), current,
         (v) => { current = v; draw(); });
@@ -471,15 +470,15 @@
       let test = 1;
       const pct = (v) => minus(`${v > 0 ? "+" : ""}${number.format(Math.round(v * 10) / 10)}%`);
       const wrcNotes = {
-        1: "Reality Check p-values against buy and hold, 2010 to June 2021. Only MACD2 is below 0.05, and its Sharpe ratio (−2.18) was still worse than buy and hold’s (−1.93).",
-        2: "Reality Check p-values against buy and hold, 2010 to June 2021. All are close to 1, so no rule beat buy and hold on annualised return.",
-        3: "Reality Check p-values against buy and hold, 2010 to June 2021. All are close to 1, so no rule beat buy and hold on cumulative return.",
+        1: "Only MACD2 is below 0.05, but its Sharpe ratio (−2.18) was still worse than buy and hold’s (−1.93).",
+        2: "All close to 1: no rule beat buy and hold on annualised return.",
+        3: "All close to 1: no rule beat buy and hold on cumulative return.",
       };
 
       const draw = () => {
         if (view === "returns") {
           legend.hidden = false;
-          readout.textContent = `${measure === 2 ? "Annualised" : "Cumulative"} returns on unseen data, from 23 June 2021 to 22 March 2024. Buy and hold lost money over this period.`;
+          readout.textContent = `${measure === 2 ? "Annualised" : "Cumulative"} returns on unseen data, 23 June 2021 to 22 March 2024.`;
           const rows = T.test.slice().sort((a, b) => b[measure] - a[measure]);
           barChart(stage, rows.map(([name, kind, annual, total]) => ({
             label: name,
@@ -589,11 +588,11 @@
           .concat([{ points: result[key], className: "line line-accent" }]);
         lineChart(twistStage, series("twist"), {
           label: `Blade twist from the centre to the tip, falling from ${result.twist[0][1].toFixed(0)} to ${result.twist[result.twist.length - 1][1].toFixed(0)} degrees.`,
-          height: 190, xDomain: [0, 1], xTicks, left: 38,
+          height: 170, xDomain: [0, 1], xTicks, left: 38,
         });
         lineChart(chordStage, series("chord"), {
           label: `Chord length along the blade, peaking at ${Math.max(...result.chord.map((p) => p[1])).toFixed(0)} millimetres.`,
-          height: 190, xDomain: [0, 1], xTicks, left: 38,
+          height: 170, xDomain: [0, 1], xTicks, left: 38,
         });
       };
 
@@ -672,7 +671,7 @@
         if (!ctx) return;
         if (view === "original") {
           ctx.putImageData(original, 0, 0);
-          readout.textContent = "The frame without the filter. The magenta crosses mark the ore the agent found.";
+          readout.textContent = "The frame as captured. Magenta crosses mark the ore the agent found.";
           return;
         }
         const out = ctx.createImageData(canvas.width, canvas.height);
@@ -692,8 +691,8 @@
         ctx.putImageData(out, 0, 0);
         const share = `${((kept / hue.length) * 100).toFixed(1)}%`;
         readout.textContent = view === "overlay"
-          ? `The filter keeps ${share} of the pixels, shown in colour over a dimmed copy of the frame.`
-          : `What template matching searches: only the ${share} of pixels that pass the filter.`;
+          ? `The filter keeps ${share} of the pixels, shown in colour over a dimmed frame.`
+          : `Template matching only sees the ${share} of pixels that pass the filter.`;
       };
 
       const prepare = () => {

@@ -306,7 +306,7 @@ a:hover {
   stroke-linejoin: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: trace-draw 3.4s cubic-bezier(0.45, 0.05, 0.3, 1) 0.4s forwards;
+  animation: trace-draw 4.4s cubic-bezier(0.45, 0.05, 0.3, 1) 0.4s forwards;
 }
 
 .trace-start {
@@ -318,7 +318,7 @@ a:hover {
 .trace-robot {
   fill: var(--signal);
   opacity: 0;
-  animation: trace-appear 0.5s ease 3.7s forwards;
+  animation: trace-appear 0.5s ease 4.7s forwards;
 }
 
 @keyframes trace-draw {
@@ -503,6 +503,7 @@ a:hover {
 /* More projects */
 
 .more-title {
+  max-width: var(--measure);
   font-size: 1.25rem;
   margin-top: 4.5rem;
   padding-top: 2.25rem;
@@ -510,9 +511,10 @@ a:hover {
 }
 
 .more-list {
+  max-width: var(--measure);
   margin-top: 1.5rem;
   display: grid;
-  gap: 1.5rem 3rem;
+  gap: 2rem 2rem;
 }
 
 @media (min-width: 40rem) {
@@ -523,6 +525,15 @@ a:hover {
 
 .more-name {
   font-weight: 600;
+}
+
+/* Keep the year on the first line, at the right, even when a long name wraps. */
+.more-list .entry-head {
+  flex-wrap: nowrap;
+}
+
+.more-list .entry-head .when {
+  flex-shrink: 0;
 }
 
 .more-list p {
@@ -596,31 +607,16 @@ html:not(.js) .js-only {
   display: none;
 }
 
+/* Every figure sits in the text column, so its edges line up with the paragraphs and the year. */
 .entry > .viz,
 .entry > .shot {
-  margin-top: 1.75rem;
-}
-
-.entry > .viz + .shot {
-  margin-top: 1.25rem;
+  max-width: var(--measure);
+  margin-top: 1.5rem;
 }
 
 .entry > .viz + :not(.shot),
 .entry > .shot + * {
-  margin-top: 1.5rem;
-}
-
-.viz {
-  padding: 1rem;
-  background: var(--panel);
-  border: 1px solid var(--frost);
-  border-radius: 10px;
-}
-
-@media (min-width: 40rem) {
-  .viz {
-    padding: 1.25rem 1.5rem;
-  }
+  margin-top: 1.25rem;
 }
 
 .viz [hidden] {
@@ -660,7 +656,7 @@ html:not(.js) .js-only {
 .seg button,
 .text-button {
   font: inherit;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.25;
   color: var(--granite);
@@ -668,8 +664,8 @@ html:not(.js) .js-only {
 }
 
 .seg button {
-  min-height: 2.25rem;
-  padding: 0.45rem 0.85rem;
+  min-height: 2rem;
+  padding: 0.3rem 0.75rem;
   background: transparent;
   border: 1px solid var(--frost);
   border-radius: 999px;
@@ -688,8 +684,8 @@ html:not(.js) .js-only {
 }
 
 .viz-sub .seg button {
-  min-height: 2rem;
-  padding: 0.3rem 0.7rem;
+  min-height: 1.75rem;
+  padding: 0.2rem 0.6rem;
   font-size: 0.8125rem;
   border-color: transparent;
   border-radius: 6px;
@@ -761,7 +757,8 @@ html:not(.js) .js-only {
 .slider output,
 .range-pair output {
   color: var(--ink);
-  font-weight: 500;}
+  font-weight: 500;
+}
 
 .range-pair {
   min-width: 0;
@@ -801,7 +798,8 @@ html:not(.js) .js-only {
   font-size: clamp(1.25rem, 3vw, 1.625rem);
   font-weight: 500;
   line-height: 1.2;
-  letter-spacing: -0.01em;}
+  letter-spacing: -0.01em;
+}
 
 .viz-pair {
   display: grid;
@@ -827,14 +825,15 @@ html:not(.js) .js-only {
 /* The chart area */
 
 .viz-stage {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .viz-stage svg {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;}
+  overflow: visible;
+}
 
 .viz-stage > img,
 .hsv-canvas {
@@ -948,7 +947,7 @@ html:not(.js) .js-only {
 }
 
 .viz .marker {
-  fill: var(--panel);
+  fill: var(--snow);
   stroke: var(--ink);
   stroke-width: 1.5;
 }
@@ -991,16 +990,16 @@ html:not(.js) .js-only {
 }
 
 .viz figcaption {
-  margin-top: 0.9rem;
+  margin-top: 0.75rem;
   font-size: 0.875rem;
   line-height: 1.55;
   color: var(--granite);
 }
 
 .viz-readout {
-  min-height: 3.1em;
+  min-height: 1.55em;
   color: var(--ink);
-  font-size: 0.9375rem;}
+}
 
 .viz-readout:empty {
   display: none;
@@ -1024,8 +1023,8 @@ html:not(.js) .js-only {
 @media (min-width: 48rem) {
   .shot {
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-    gap: 1.5rem;
-    align-items: end;
+    gap: 1.25rem;
+    align-items: start;
   }
 }
 
